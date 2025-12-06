@@ -1,0 +1,158 @@
+<!-- ============================================================================
+     VISTA: ADMIN POST FORM / FORMULARIO DE CREAR/EDITAR POST
+     ============================================================================
+     
+     Formulario para crear o editar un post.
+     
+     CAMBIAR AQUÍ:
+     - Campos del formulario
+     - Validaciones
+     ============================================================================ -->
+
+<%- include('../partials/header') %>
+
+<!-- Navbar Admin -->
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="/admin">
+            <img src="public/img/logodemuaythai.jpg" alt="HA MUAY THAI GYM" class="navbar-logo me-2" height="40">
+            <span class="fw-bold">Panel Administrativo</span>
+        </a>
+        <div class="d-flex gap-3">
+            <a href="/admin/posts" class="btn btn-outline-light btn-sm">
+                <i class="fas fa-arrow-left me-1"></i>Volver
+            </a>
+            <a href="/" class="btn btn-outline-light btn-sm" target="_blank">
+                <i class="fas fa-external-link-alt me-1"></i>Ver Sitio
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div style="margin-top: 76px; padding: 2rem 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <!-- Título -->
+                <h1 class="display-5 fw-bold mb-4">
+                    <%= typeof post !== 'undefined' && post ? 'Editar Post' : 'Nuevo Post' %>
+                </h1>
+                
+                <!-- Formulario -->
+                <form method="POST" action="<%= typeof action !== 'undefined' ? action : '/admin/posts' %>" 
+                      class="needs-validation" novalidate>
+                    
+                    <!-- Si es PUT, agregar campo oculto -->
+                    <% if (typeof method !== 'undefined' && method === 'PUT') { %>
+                    <input type="hidden" name="_method" value="PUT">
+                    <% } %>
+                    
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="row g-3">
+                                <!-- Título -->
+                                <div class="col-12">
+                                    <label for="title" class="form-label">Título <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="title" name="title" 
+                                           value="<%= typeof post !== 'undefined' && post ? post.title : '' %>" 
+                                           placeholder="Título del post" required>
+                                    <div class="invalid-feedback">Por favor ingresa un título.</div>
+                                </div>
+                                
+                                <!-- Fecha y Categoría -->
+                                <div class="col-md-6">
+                                    <label for="date" class="form-label">Fecha <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" id="date" name="date" 
+                                           value="<%= typeof post !== 'undefined' && post ? post.date : new Date().toISOString().split('T')[0] %>" 
+                                           required>
+                                    <div class="invalid-feedback">Por favor ingresa una fecha.</div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="category" class="form-label">Categoría <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="category" name="category" required>
+                                        <option value="">Selecciona una categoría</option>
+                                        <option value="Técnicas" <%= typeof post !== 'undefined' && post && post.category === 'Técnicas' ? 'selected' : '' %>>Técnicas</option>
+                                        <option value="Entrenamiento" <%= typeof post !== 'undefined' && post && post.category === 'Entrenamiento' ? 'selected' : '' %>>Entrenamiento</option>
+                                        <option value="Nutrición" <%= typeof post !== 'undefined' && post && post.category === 'Nutrición' ? 'selected' : '' %>>Nutrición</option>
+                                        <option value="Historia" <%= typeof post !== 'undefined' && post && post.category === 'Historia' ? 'selected' : '' %>>Historia</option>
+                                    </select>
+                                    <div class="invalid-feedback">Por favor selecciona una categoría.</div>
+                                </div>
+                                
+                                <!-- Tags -->
+                                <div class="col-12">
+                                    <label for="tags" class="form-label">Tags (separados por comas)</label>
+                                    <input type="text" class="form-control" id="tags" name="tags" 
+                                           value="<%= typeof post !== 'undefined' && post && post.tags ? post.tags.join(', ') : '' %>" 
+                                           placeholder="Ej: Principiante, Técnicas, Entrenamiento">
+                                    <small class="form-text text-muted">Separa los tags con comas.</small>
+                                </div>
+                                
+                                <!-- Imagen -->
+                                <div class="col-12">
+                                    <label for="image" class="form-label">URL de la Imagen</label>
+                                    <input type="text" class="form-control" id="image" name="image" 
+                                           value="<%= typeof post !== 'undefined' && post ? post.image : '/img/blog/default.jpg' %>" 
+                                           placeholder="/img/blog/post-1.jpg">
+                                    <small class="form-text text-muted">Ruta de la imagen en public/img/</small>
+                                </div>
+                                
+                                <!-- Extracto -->
+                                <div class="col-12">
+                                    <label for="excerpt" class="form-label">Extracto <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="excerpt" name="excerpt" rows="3" 
+                                              placeholder="Breve descripción del post..." required><%= typeof post !== 'undefined' && post ? post.excerpt : '' %></textarea>
+                                    <div class="invalid-feedback">Por favor ingresa un extracto.</div>
+                                </div>
+                                
+                                <!-- Contenido -->
+                                <div class="col-12">
+                                    <label for="content" class="form-label">Contenido Completo <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="content" name="content" rows="15" 
+                                              placeholder="Contenido completo del post en HTML..." required><%= typeof post !== 'undefined' && post ? post.content : '' %></textarea>
+                                    <div class="invalid-feedback">Por favor ingresa el contenido.</div>
+                                    <small class="form-text text-muted">Puedes usar HTML básico (h2, h3, p, ul, li, etc.)</small>
+                                </div>
+                                
+                                <!-- Botones -->
+                                <div class="col-12 mt-4">
+                                    <div class="d-flex gap-2">
+                                        <button type="submit" class="btn btn-primary btn-lg px-5">
+                                            <i class="fas fa-save me-2"></i>
+                                            <%= typeof post !== 'undefined' && post ? 'Actualizar Post' : 'Crear Post' %>
+                                        </button>
+                                        <a href="/admin/posts" class="btn btn-outline-secondary btn-lg px-5">
+                                            Cancelar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Validación Bootstrap
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+</script>
+
+<%- include('../partials/footer') %>

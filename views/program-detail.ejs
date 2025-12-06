@@ -1,0 +1,181 @@
+<!-- ============================================================================
+     VISTA: PROGRAM DETAIL / DETALLE DE PROGRAMA
+     ============================================================================
+     
+     Esta página muestra el detalle completo de un programa específico.
+     
+     CAMBIAR AQUÍ:
+     - Estilos de la página
+     - Información mostrada del programa
+     - Sección de programas relacionados
+     ============================================================================ -->
+
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<!-- Hero de la página -->
+<section class="py-5 bg-primary text-white" style="margin-top: 76px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <!-- Logo en la página de detalle de programa -->
+                <div class="text-center mb-3">
+                    <img src="/img/logodemuaythai.jpg" alt="HA MUAY THAI GYM" style="max-height: 80px; height: auto; width: auto;">
+                </div>
+                
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb text-white-50">
+                        <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="/programs" class="text-white-50 text-decoration-none">Programas</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">
+                            <%= typeof program !== 'undefined' ? program.name : 'Programa' %>
+                        </li>
+                    </ol>
+                </nav>
+                
+                <% if (typeof program !== 'undefined') { %>
+                    <!-- Badges de Nivel y Duración -->
+                    <div class="mb-3">
+                        <span class="badge bg-light text-dark me-2 px-3 py-2">
+                            <i class="fas fa-signal me-1"></i><%= program.level %>
+                        </span>
+                        <span class="badge bg-light text-dark me-2 px-3 py-2">
+                            <i class="far fa-clock me-1"></i><%= program.duration %>
+                        </span>
+                        <% if (program.featured) { %>
+                        <span class="badge bg-warning text-dark px-3 py-2">
+                            <i class="fas fa-star me-1"></i>Destacado
+                        </span>
+                        <% } %>
+                    </div>
+                    
+                    <!-- Título -->
+                    <h1 class="display-4 fw-bold mb-3"><%= program.name %></h1>
+                    
+                    <!-- Precio -->
+                    <p class="lead mb-0">
+                        <span class="badge bg-success fs-6 px-4 py-2">
+                            <i class="fas fa-tag me-1"></i><%= program.price %>
+                        </span>
+                    </p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Detalle del Programa -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <% if (typeof program !== 'undefined') { %>
+                <!-- Imagen del Programa -->
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <!-- CAMBIAR: Imagen del programa está en data/programs.json -->
+                    <img src="<%= program.image %>" alt="<%= program.name %>" 
+                         class="img-fluid rounded shadow-lg">
+                </div>
+                
+                <!-- Descripción del Programa -->
+                <div class="col-lg-6">
+                    <h2 class="h3 fw-bold mb-4">Descripción del Programa</h2>
+                    
+                    <!-- CAMBIAR: Descripción corta (viene de data/programs.json) -->
+                    <p class="lead mb-4"><%= program.description %></p>
+                    
+                    <!-- CAMBIAR: Descripción completa (viene de data/programs.json) -->
+                    <div class="mb-4">
+                        <%- program.fullDescription %>
+                    </div>
+                    
+                    <!-- Información del Programa -->
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold mb-3">Información del Programa</h5>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-2">
+                                    <i class="fas fa-signal text-primary me-2"></i>
+                                    <strong>Nivel:</strong> <%= program.level %>
+                                </li>
+                                <li class="mb-2">
+                                    <i class="far fa-clock text-primary me-2"></i>
+                                    <strong>Duración:</strong> <%= program.duration %>
+                                </li>
+                                <li class="mb-0">
+                                    <i class="fas fa-tag text-primary me-2"></i>
+                                    <strong>Precio:</strong> 
+                                    <span class="fw-bold text-success"><%= program.price %></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Botones de Acción -->
+                    <!-- CAMBIAR: Puedes cambiar los textos de los botones o agregar más acciones -->
+                    <div class="d-grid gap-2 d-md-flex">
+                        <button class="btn btn-primary btn-lg flex-fill">
+                            <i class="fas fa-shopping-cart me-2"></i>Inscribirse Ahora
+                        </button>
+                        <button class="btn btn-outline-primary btn-lg">
+                            <i class="fas fa-heart me-2"></i>Agregar a Favoritos
+                        </button>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="col-12 text-center py-5">
+                    <h2 class="h3 text-muted mb-3">Programa no encontrado</h2>
+                    <p class="text-muted mb-4">El programa que buscas no está disponible.</p>
+                    <a href="/programs" class="btn btn-primary">
+                        Ver Todos los Programas <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Programas Relacionados -->
+<% if (typeof program !== 'undefined' && typeof relatedPrograms !== 'undefined' && relatedPrograms.length > 0) { %>
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-4">
+            <div class="col-12">
+                <!-- CAMBIAR: Título de la sección -->
+                <h2 class="display-5 fw-bold text-center mb-3">Programas Relacionados</h2>
+                <!-- CAMBIAR: Descripción de la sección -->
+                <p class="lead text-center text-muted">
+                    Otros programas que podrían interesarte.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <% relatedPrograms.forEach(relatedProgram => { %>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 shadow-sm">
+                        <!-- CAMBIAR: Imagen del programa relacionado -->
+                        <img src="<%= relatedProgram.image %>" class="card-img-top" 
+                             alt="<%= relatedProgram.name %>" style="height: 200px; object-fit: cover;">
+                        <div class="card-body d-flex flex-column">
+                            <span class="badge bg-primary mb-2"><%= relatedProgram.level %></span>
+                            <h5 class="card-title"><%= relatedProgram.name %></h5>
+                            <p class="card-text text-muted flex-grow-1">
+                                <%= relatedProgram.description %>
+                            </p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <span class="fw-bold text-primary"><%= relatedProgram.price %></span>
+                                <a href="/programs/<%= relatedProgram.id %>" class="btn btn-sm btn-outline-primary">
+                                    Ver Detalles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,78 @@
+<!-- ============================================================================
+     NAVBAR PARCIAL - Barra de navegación principal
+     ============================================================================
+     
+     CAMBIAR AQUÍ:
+     - Logo/Texto del navbar (línea 17) - Reemplaza el texto o agrega una imagen
+     - Enlaces del menú (líneas 24-32) - Agrega o quita páginas
+     - Enlaces de redes sociales (líneas 42-46) - Cambia las URLs
+     - Colores del navbar están en styles.css bajo la sección ".navbar"
+     ============================================================================ -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <!-- Logo del sitio -->
+        <a class="navbar-brand" href="/">
+            <img src="/img/logodemuaythai.jpg" alt="HA MUAY THAI GYM" class="navbar-logo" height="50">
+        </a>
+        
+        <!-- Botón para menú móvil -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- CAMBIAR: Agrega o quita elementos del menú según tus necesidades -->
+                <li class="nav-item">
+                    <a class="nav-link <%= typeof currentPage !== 'undefined' && currentPage === 'home' ? 'active' : '' %>" 
+                       href="/">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= typeof currentPage !== 'undefined' && currentPage === 'start-here' ? 'active' : '' %>" 
+                       href="/start-here">Empieza Aquí</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= typeof currentPage !== 'undefined' && currentPage === 'programs' ? 'active' : '' %>" 
+                       href="/programs">Programas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= typeof currentPage !== 'undefined' && currentPage === 'blog' ? 'active' : '' %>" 
+                       href="/blog">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= typeof currentPage !== 'undefined' && currentPage === 'about' ? 'active' : '' %>" 
+                       href="/about">Acerca de</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= typeof currentPage !== 'undefined' && currentPage === 'contact' ? 'active' : '' %>" 
+                       href="/contact">Contacto</a>
+                </li>
+            </ul>
+            
+            <!-- Enlaces de redes sociales -->
+            <!-- CAMBIAR: Reemplaza las URLs con tus perfiles reales de redes sociales -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.facebook.com/profile.php?id=61557981957530" target="_blank" rel="noopener noreferrer" 
+                       aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.instagram.com/kamuaythaigym/" target="_blank" rel="noopener noreferrer" 
+                       aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://youtube.com" target="_blank" rel="noopener noreferrer" 
+                       aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

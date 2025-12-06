@@ -1,0 +1,235 @@
+<!-- ============================================================================
+     VISTA: CONTACT / CONTACTO
+     ============================================================================
+     
+     Esta página incluye:
+     - Formulario de contacto
+     - Información de contacto
+     
+     CAMBIAR AQUÍ:
+     - Título principal (línea 22)
+     - Texto del formulario
+     - Información de contacto (dirección, teléfono, email)
+     - Textos de los campos del formulario
+     ============================================================================ -->
+
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<!-- Hero de la página -->
+<section class="py-5 bg-primary text-white" style="margin-top: 76px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <!-- Logo en la página de contacto -->
+                <img src="/img/logodemuaythai.jpg" alt="HA MUAY THAI GYM" class="mb-3" style="max-height: 100px; height: auto; width: auto;">
+                
+                <!-- CAMBIAR: Título principal de la página -->
+                <h1 class="display-4 fw-bold mb-4">Contáctanos</h1>
+                
+                <!-- CAMBIAR: Subtítulo -->
+                <p class="lead mb-0">
+                    ¿Tienes preguntas? Estamos aquí para ayudarte.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mensaje de éxito (si viene de redirect) -->
+<% if (typeof success !== 'undefined' && success) { %>
+<section class="py-3 bg-success text-white">
+    <div class="container">
+        <div class="alert alert-success alert-dismissible fade show mb-0" role="alert">
+            <!-- CAMBIAR: Mensaje de éxito -->
+            <i class="fas fa-check-circle me-2"></i>
+            <strong>¡Mensaje enviado!</strong> Te responderemos lo antes posible.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<!-- Sección de Contacto -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Formulario de Contacto -->
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <h2 class="h3 fw-bold mb-4">Envíanos un Mensaje</h2>
+                
+                <!-- CAMBIAR: Este formulario envía a POST /contact (simulado) -->
+                <!-- Si quieres integrar un servicio real de envío de correos (Nodemailer, SendGrid, etc.),
+                     modifica la ruta en routes/index.js -->
+                <form method="POST" action="/contact" class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <!-- Campo: Nombre -->
+                        <div class="col-md-6">
+                            <label for="name" class="form-label">Nombre <span class="text-danger">*</span></label>
+                            <!-- CAMBIAR: Placeholder del campo -->
+                            <input type="text" class="form-control" id="name" name="name" 
+                                   placeholder="Tu nombre" required>
+                            <div class="invalid-feedback">
+                                Por favor ingresa tu nombre.
+                            </div>
+                        </div>
+                        
+                        <!-- Campo: Email -->
+                        <div class="col-md-6">
+                            <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                            <!-- CAMBIAR: Placeholder del campo -->
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   placeholder="tu@email.com" required>
+                            <div class="invalid-feedback">
+                                Por favor ingresa un email válido.
+                            </div>
+                        </div>
+                        
+                        <!-- Campo: Asunto -->
+                        <div class="col-12">
+                            <label for="subject" class="form-label">Asunto <span class="text-danger">*</span></label>
+                            <!-- CAMBIAR: Placeholder del campo -->
+                            <input type="text" class="form-control" id="subject" name="subject" 
+                                   placeholder="Asunto de tu mensaje" required>
+                            <div class="invalid-feedback">
+                                Por favor ingresa un asunto.
+                            </div>
+                        </div>
+                        
+                        <!-- Campo: Mensaje -->
+                        <div class="col-12">
+                            <label for="message" class="form-label">Mensaje <span class="text-danger">*</span></label>
+                            <!-- CAMBIAR: Placeholder del campo y número de filas -->
+                            <textarea class="form-control" id="message" name="message" rows="6" 
+                                      placeholder="Escribe tu mensaje aquí..." required></textarea>
+                            <div class="invalid-feedback">
+                                Por favor ingresa tu mensaje.
+                            </div>
+                        </div>
+                        
+                        <!-- Botón de Envío -->
+                        <div class="col-12">
+                            <!-- CAMBIAR: Texto del botón -->
+                            <button type="submit" class="btn btn-primary btn-lg px-5">
+                                <i class="fas fa-paper-plane me-2"></i>Enviar Mensaje
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Información de Contacto -->
+            <div class="col-lg-4">
+                <h2 class="h3 fw-bold mb-4">Información de Contacto</h2>
+                
+                <!-- CAMBIAR: Información de contacto -->
+                <div class="mb-4">
+                    <div class="d-flex align-items-start mb-3">
+                        <div class="bg-primary text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Dirección</h5>
+                            <!-- CAMBIAR: Dirección -->
+                            <p class="text-muted mb-0">
+                                <a href="https://www.bing.com/maps/search?v=2&pc=FACEBK&mid=8100&mkt=es-MX&fbclid=IwY2xjawOfKhxleHRuA2FlbQIxMABicmlkETFwbHBvM1M1WDJsWlgyR0xlc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHjr0EJUPm_49Jry1WoPKvBhG5uEZZ98NaDa8X-TJP8xrM8yEJNOtDqbpFjGr_aem_qh2pN62nCe6CJhkobcJnHg&FORM=FBKPL1&q=Sim%C3%B3n+%C3%81lvarez+%23202+g%2C+col.+heroes+de+Chapultepec+%2C+Le%C3%B3n+Centro%2C+Mexico%2C+37190&cp=21.136903%7E-101.677883&lvl=16&style=r" target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+                                Simón Álvarez #202 g, col. heroes de Chapultepec,<br>
+                                León Centro, Mexico, <br>
+                                37190
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-start mb-3">
+                        <div class="bg-primary text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Teléfono</h5>
+                            <!-- CAMBIAR: Teléfono -->
+                            <p class="text-muted mb-0">
+                                <a href="tel:+524771347339" class="text-decoration-none">
+                                    +52 (477) 134 7339
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-start mb-3">
+                        <div class="bg-primary text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Email</h5>
+                            <!-- CAMBIAR: Email -->
+                            <p class="text-muted mb-0">
+                                <a href="mailto:contacto@kamt.com.mx" class="text-decoration-none">
+                                    contacto@kamt.com.mx
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex align-items-start mb-3">
+                        <div class="bg-primary text-white rounded-circle p-3 me-3">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-1">Horario de Atención</h5>
+                            <!-- CAMBIAR: Horario -->
+                            <p class="text-muted mb-0">
+                                Lunes - Jueves: 6:30 AM - 9:30 AM <br>
+                                                y 6:00 PM - 9:00 PM<br>
+                                Viernes: Cerrado <br>
+                                Sábados: 08:30 AM - 10:00 AM<br>
+                                Domingos: Cerrado
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Redes Sociales -->
+                <div>
+                    <h5 class="fw-bold mb-3">Síguenos</h5>
+                    <!-- CAMBIAR: Enlaces de redes sociales -->
+                    <div class="d-flex gap-3">
+                        <a href="https://www.facebook.com/profile.php?id=61557981957530" target="_blank" rel="noopener noreferrer" 
+                           class="btn btn-outline-primary btn-sm">
+                            <i class="fab fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="https://www.instagram.com/kamuaythaigym/" target="_blank" rel="noopener noreferrer" 
+                           class="btn btn-outline-danger btn-sm">
+                            <i class="fab fa-instagram"></i> Instagram
+                        </a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" 
+                           class="btn btn-outline-danger btn-sm">
+                            <i class="fab fa-youtube"></i> YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Script para validación del formulario (Bootstrap) -->
+<script>
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+</script>
+
+<%- include('partials/footer') %>

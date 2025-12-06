@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "name": "Fundamentos de Muay Thai",
+    "level": "Principiante",
+    "duration": "8 semanas",
+    "description": "Aprende los fundamentos básicos del Muay Thai desde cero. Perfecto para quienes nunca han practicado este arte marcial.",
+    "fullDescription": "<h2>Programa de Fundamentos</h2><p>Este programa está diseñado para introducirte en el mundo del Muay Thai de manera segura y progresiva. Aprenderás:</p><ul><li>Postura y guardia correctas</li><li>Técnicas básicas de golpeo con puños</li><li>Técnicas básicas de patadas</li><li>Defensas fundamentales</li><li>Movimiento básico en el ring</li><li>Condicionamiento físico específico</li></ul><p>Al finalizar este programa, tendrás una base sólida para continuar tu entrenamiento en niveles más avanzados.</p>",
+    "price": "Gratuito",
+    "image": "img/principiante-inicio.webp",
+    "featured": true
+  },
+  {
+    "id": 2,
+    "name": "Muay Thai Intermedio",
+    "level": "Intermedio",
+    "duration": "12 semanas",
+    "description": "Mejora tu técnica y potencia. Programa para practicantes que ya dominan los fundamentos básicos.",
+    "fullDescription": "<h2>Programa Intermedio</h2><p>En este nivel, profundizarás en técnicas más complejas y comenzarás a desarrollar tu estilo personal de combate:</p><ul><li>Combinaciones de golpes avanzadas</li><li>Técnicas de rodilla y codo</li><li>Clinch básico y avanzado</li><li>Estrategias de combate</li><li>Entrenamiento de resistencia</li><li>Sparring controlado</li></ul><p>Este programa te prepara para competir a nivel amateur o simplemente mejorar significativamente tu nivel.</p>",
+    "price": "$49.99/mes",
+    "image": "img/intermedio.jpg",
+    "featured": true
+  },
+  {
+    "id": 3,
+    "name": "Programa de Competencia",
+    "level": "Competidor",
+    "duration": "16 semanas",
+    "description": "Entrenamiento intensivo para competidores. Preparación física y mental para torneos y combates.",
+    "fullDescription": "<h2>Programa para Competidores</h2><p>Este es nuestro programa más intensivo, diseñado específicamente para atletas que buscan competir:</p><ul><li>Preparación física de alto rendimiento</li><li>Técnicas avanzadas y secretos del combate</li><li>Estrategia y análisis de oponentes</li><li>Sparring intensivo</li><li>Preparación mental y psicológica</li><li>Nutrición deportiva específica</li><li>Recuperación y prevención de lesiones</li></ul><p>Incluye asesoramiento personalizado y seguimiento de tu progreso hasta el día del combate.</p>",
+    "price": "$99.99/mes",
+    "image": "img/competencia.webp",
+    "featured": true
+  },
+  {
+    "id": 4,
+    "name": "Muay Thai para Fitness",
+    "level": "Principiante",
+    "duration": "4 semanas",
+    "description": "Usa el Muay Thai como herramienta de entrenamiento físico. Quema calorías mientras aprendes técnicas básicas.",
+    "fullDescription": "<h2>Muay Thai Fitness</h2><p>Este programa combina el entrenamiento físico intenso con técnicas básicas de Muay Thai:</p><ul><li>Entrenamiento cardiovascular de alto impacto</li><li>Técnicas básicas de golpeo y patadas</li><li>Ejercicios con saco y pads</li><li>Entrenamiento funcional</li><li>Rutinas de fuerza y resistencia</li></ul><p>Ideal para quienes buscan ponerse en forma de manera divertida y desafiante, sin necesariamente competir.</p>",
+    "price": "$29.99/mes",
+    "image": "img/condicionamientofisico.jpg",
+    "featured": false
+  },
+  {
+    "id": 5,
+    "name": "Clinch Mastery",
+    "level": "Intermedio",
+    "duration": "6 semanas",
+    "description": "Domina el clinch, una de las técnicas más distintivas del Muay Thai.",
+    "fullDescription": "<h2>Dominando el Clinch</h2><p>El clinch es una característica única del Muay Thai. Este programa especializado te enseñará:</p><ul><li>Fundamentos del clinch tailandés</li><li>Posiciones y agarres</li><li>Técnicas de rodilla desde el clinch</li><li>Giros y barridas</li><li>Defensa en el clinch</li><li>Transiciones y escapes</li></ul><p>Completa tu arsenal de técnicas dominando esta poderosa arma del Muay Thai.</p>",
+    "price": "$39.99/mes",
+    "image": "img/avanzado.webp",
+    "featured": false
+  }
+]

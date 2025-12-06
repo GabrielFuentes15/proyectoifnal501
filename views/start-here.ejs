@@ -1,0 +1,243 @@
+<!-- ============================================================================
+     VISTA: START HERE / EMPIEZA AQUÍ
+     ============================================================================
+     
+     Esta página orienta a los usuarios según su nivel:
+     - Principiante
+     - Intermedio
+     - Competidor
+     
+     CAMBIAR AQUÍ:
+     - Título principal (línea 22)
+     - Descripción introductoria (líneas 24-27)
+     - Contenido de cada nivel (secciones siguientes)
+     - Textos de las tarjetas de nivel
+     ============================================================================ -->
+
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<!-- Hero de la página -->
+<section class="py-5 bg-primary text-white" style="margin-top: 76px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <!-- Logo en la página Start Here -->
+                <img src="/img/logodemuaythai.jpg" alt="HA MUAY THAI GYM" class="mb-3" style="max-height: 100px; height: auto; width: auto;">
+                
+                <!-- CAMBIAR: Título principal de la página -->
+                <h1 class="display-4 fw-bold mb-4">Empieza Aquí</h1>
+                
+                <!-- CAMBIAR: Descripción introductoria -->
+                <p class="lead mb-0">
+                    Descubre qué programa es el adecuado para ti según tu nivel de experiencia.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección Introductoria -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- CAMBIAR: Texto explicativo para quién es la página -->
+                <p class="lead text-center mb-5">
+                    Nuestra academia está diseñada para adaptarse a todos los niveles, 
+                    desde principiantes absolutos hasta competidores profesionales. 
+                    Selecciona tu nivel para ver los programas recomendados.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Niveles -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <!-- Nivel: Principiante -->
+        <div class="row mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <!-- CAMBIAR: Imagen para nivel principiante -->
+                <img src="img/niños-principiante.webp" alt="Nivel Principiante" 
+                     class="img-fluid rounded shadow">
+                <!-- Si no tienes imagen, puedes usar un placeholder -->
+                <!-- <div class="bg-primary rounded shadow" style="height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-user-graduate fa-5x text-white"></i>
+                </div> -->
+            </div>
+            <div class="col-lg-6 d-flex align-items-center">
+                <div>
+                    <!-- CAMBIAR: Título del nivel -->
+                    <h2 class="display-6 fw-bold mb-3">
+                        <i class="fas fa-seedling text-success me-2"></i>Principiante
+                    </h2>
+                    
+                    <!-- CAMBIAR: Descripción del nivel -->
+                    <p class="lead mb-4">
+                        Si nunca has practicado Muay Thai o tienes poca experiencia, 
+                        este es el lugar perfecto para comenzar.
+                    </p>
+                    
+                    <!-- CAMBIAR: Lista de contenido recomendado -->
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Fundamentos básicos de Muay Thai
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Técnicas de guardia y movimiento
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Condicionamiento físico progresivo
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            Entrenamiento a tu ritmo
+                        </li>
+                    </ul>
+                    
+                    <!-- CAMBIAR: Texto del botón y enlace -->
+                    <a href="/programs?level=principiante" class="btn btn-success btn-lg">
+                        Ver Programas para Principiantes <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Separador visual -->
+        <hr class="my-5">
+        
+        <!-- Nivel: Intermedio -->
+        <div class="row mb-5">
+            <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0">
+                <!-- CAMBIAR: Imagen para nivel intermedio -->
+                <img src="img/intermedio.jpg" alt="Nivel Intermedio" 
+                     class="img-fluid rounded shadow">
+                <!-- Si no tienes imagen, puedes usar un placeholder -->
+                <!-- <div class="bg-warning rounded shadow" style="height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-fire fa-5x text-white"></i>
+                </div> -->
+            </div>
+            <div class="col-lg-6 order-lg-1 d-flex align-items-center">
+                <div>
+                    <!-- CAMBIAR: Título del nivel -->
+                    <h2 class="display-6 fw-bold mb-3">
+                        <i class="fas fa-fire text-warning me-2"></i>Intermedio
+                    </h2>
+                    
+                    <!-- CAMBIAR: Descripción del nivel -->
+                    <p class="lead mb-4">
+                        Si ya dominas los fundamentos y buscas mejorar tu técnica y potencia, 
+                        los programas intermedios son ideales para ti.
+                    </p>
+                    
+                    <!-- CAMBIAR: Lista de contenido recomendado -->
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-warning me-2"></i>
+                            Combinaciones avanzadas de golpes
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-warning me-2"></i>
+                            Técnicas de rodilla y codo
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-warning me-2"></i>
+                            Clinch básico y avanzado
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-warning me-2"></i>
+                            Estrategias de combate
+                        </li>
+                    </ul>
+                    
+                    <!-- CAMBIAR: Texto del botón y enlace -->
+                    <a href="/programs?level=intermedio" class="btn btn-warning btn-lg">
+                        Ver Programas Intermedios <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Separador visual -->
+        <hr class="my-5">
+        
+        <!-- Nivel: Competidor -->
+        <div class="row mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <!-- CAMBIAR: Imagen para nivel competidor -->
+                <img src="img/avanzado.webp" alt="Nivel Competidor" 
+                     class="img-fluid rounded shadow">
+                <!-- Si no tienes imagen, puedes usar un placeholder -->
+                <!-- <div class="bg-danger rounded shadow" style="height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-trophy fa-5x text-white"></i>
+                </div> -->
+            </div>
+            <div class="col-lg-6 d-flex align-items-center">
+                <div>
+                    <!-- CAMBIAR: Título del nivel -->
+                    <h2 class="display-6 fw-bold mb-3">
+                        <i class="fas fa-trophy text-danger me-2"></i>Competidor
+                    </h2>
+                    
+                    <!-- CAMBIAR: Descripción del nivel -->
+                    <p class="lead mb-4">
+                        Para atletas que buscan competir o alcanzar el más alto nivel, 
+                        nuestro programa de competencia ofrece entrenamiento intensivo personalizado.
+                    </p>
+                    
+                    <!-- CAMBIAR: Lista de contenido recomendado -->
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            Preparación física de alto rendimiento
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            Técnicas avanzadas y secretos del combate
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            Estrategia y análisis de oponentes
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check-circle text-danger me-2"></i>
+                            Asesoramiento personalizado
+                        </li>
+                    </ul>
+                    
+                    <!-- CAMBIAR: Texto del botón y enlace -->
+                    <a href="/programs?level=competidor" class="btn btn-danger btn-lg">
+                        Ver Programa de Competencia <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Call to Action -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <!-- CAMBIAR: Título de CTA -->
+                <h2 class="display-5 fw-bold mb-4">¿Listo para Empezar?</h2>
+                <!-- CAMBIAR: Descripción del CTA -->
+                <p class="lead mb-4">
+                    Explora todos nuestros programas y encuentra el que mejor se adapte a tus objetivos.
+                </p>
+                <!-- CAMBIAR: Texto del botón -->
+                <a href="/programs" class="btn btn-light btn-lg px-5">
+                    Ver Todos los Programas <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

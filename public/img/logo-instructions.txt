@@ -1,0 +1,107 @@
+==========================================
+INSTRUCCIONES PARA EL LOGO
+==========================================
+
+¡IMPORTANTE! Debes agregar el logo del sitio en esta carpeta.
+
+ARCHIVO NECESARIO:
+- logo.png (o logo.jpg, logo.webp, etc.)
+
+UBICACIÓN DEL ARCHIVO:
+public/img/logo.png
+
+==========================================
+DESCRIPCIÓN DEL LOGO
+==========================================
+
+El logo es "HA MUAY THAI GYM" con un diseño de escudo/cresta que incluye:
+- Dos figuras de artes marciales en la parte superior (azul)
+- Texto "KA * MT" en el centro (rojo)
+- Texto "HA MUAY THAI GYM" en la parte inferior
+- Colores: Rojo, azul, blanco con contornos negros
+
+==========================================
+FORMATO RECOMENDADO
+==========================================
+
+- Formato: PNG (con transparencia preferible) o JPG
+- Tamaño recomendado: 
+  * Ancho: mínimo 300px, ideal 400-600px
+  * Alto: proporcional al ancho
+- Resolución: 300 DPI (para impresión) o 72 DPI (para web)
+- Fondo: Transparente (PNG) o fondo sólido
+
+==========================================
+DÓNDE SE USA EL LOGO
+==========================================
+
+El logo aparece en las siguientes ubicaciones:
+
+1. NAVBAR (barra de navegación) - Todas las páginas
+   - Altura: 50px
+   - Ubicación: views/partials/navbar.ejs
+
+2. FOOTER (pie de página) - Todas las páginas
+   - Altura: 60px
+   - Ubicación: views/partials/footer.ejs
+
+3. HERO de la página principal (Home)
+   - Altura: 120px
+   - Con animación y sombra
+   - Ubicación: views/home.ejs
+
+4. Páginas principales:
+   - About (Acerca de): 150px
+   - Contact (Contacto): 100px
+   - Start Here (Empieza Aquí): 100px
+   - Programs (Programas): 100px
+   - Blog: 100px
+   - Detalles de programa: 80px
+   - Detalles de blog: 80px
+
+5. Panel Administrativo (Admin)
+   - Altura: 40px (en navbar)
+   - Todas las vistas del admin
+
+==========================================
+CÓMO AGREGAR EL LOGO
+==========================================
+
+1. Guarda tu archivo de logo como "logo.png" (o el formato que uses)
+
+2. Colócalo en esta carpeta:
+   public/img/logo.png
+
+3. Si usas un formato diferente (JPG, WebP), actualiza las rutas en:
+   - views/partials/navbar.ejs
+   - views/partials/footer.ejs
+   - views/home.ejs
+   - Y en las otras vistas mencionadas
+
+   Busca: src="/img/logo.png" y cámbialo por tu formato.
+
+==========================================
+PERSONALIZACIÓN
+==========================================
+
+Si quieres cambiar el tamaño del logo en alguna ubicación:
+
+1. NAVBAR: public/css/styles.css (línea ~122)
+   Busca: .navbar-logo { height: 50px; }
+
+2. FOOTER: public/css/styles.css (línea ~138)
+   Busca: .footer-logo { height: 60px; }
+
+3. HERO: public/css/styles.css (línea ~177)
+   Busca: .hero-logo { max-height: 120px; }
+
+==========================================
+NOTAS
+==========================================
+
+- Si no tienes el logo aún, el sitio funcionará pero mostrará un icono de imagen rota
+- El logo debe ser de alta calidad pero optimizado para web (peso ligero)
+- Considera usar WebP para mejor rendimiento (aunque PNG funciona bien)
+
+¡Una vez que agregues el logo, estará visible en todas las páginas del sitio!
+

@@ -1,0 +1,140 @@
+<!-- ============================================================================
+     VISTA: ADMIN DASHBOARD / PANEL ADMINISTRATIVO
+     ============================================================================
+     
+     Dashboard principal del panel administrativo.
+     
+     CAMBIAR AQUÍ:
+     - Textos del dashboard
+     - Estadísticas mostradas
+     - Enlaces de navegación
+     ============================================================================ -->
+
+<%- include('../partials/header') %>
+
+<!-- Navbar Admin -->
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <!-- Logo del admin -->
+        <a class="navbar-brand d-flex align-items-center" href="/admin">
+            <img src="/img/logodemuaythai.jpg" alt="HA MUAY THAI GYM" class="navbar-logo me-2" height="40">
+            <span class="fw-bold">Panel Administrativo</span>
+        </a>
+        <div class="d-flex gap-3">
+            <a href="/" class="btn btn-outline-light btn-sm" target="_blank">
+                <i class="fas fa-external-link-alt me-1"></i>Ver Sitio
+            </a>
+            <a href="/" class="btn btn-outline-light btn-sm">
+                <i class="fas fa-sign-out-alt me-1"></i>Salir
+            </a>
+        </div>
+    </div>
+</nav>
+
+<!-- Contenido Principal -->
+<div style="margin-top: 76px; padding: 2rem 0;">
+    <div class="container">
+        <!-- Título -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <!-- CAMBIAR: Título del dashboard -->
+                <h1 class="display-5 fw-bold mb-3">Dashboard</h1>
+                <p class="lead text-muted">
+                    Bienvenido al panel administrativo. Gestiona tus posts y programas desde aquí.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Tarjetas de Estadísticas -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <!-- CAMBIAR: Texto de la tarjeta -->
+                                <h5 class="card-title text-muted mb-2">Total de Posts</h5>
+                                <h2 class="display-4 fw-bold text-primary mb-0">
+                                    <%= typeof postsCount !== 'undefined' ? postsCount : 0 %>
+                                </h2>
+                            </div>
+                            <div class="bg-primary text-white rounded-circle p-4">
+                                <i class="fas fa-newspaper fa-2x"></i>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- CAMBIAR: Texto del enlace -->
+                        <a href="/admin/posts" class="btn btn-primary btn-sm w-100">
+                            <i class="fas fa-eye me-2"></i>Ver Todos los Posts
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <!-- CAMBIAR: Texto de la tarjeta -->
+                                <h5 class="card-title text-muted mb-2">Total de Programas</h5>
+                                <h2 class="display-4 fw-bold text-success mb-0">
+                                    <%= typeof programsCount !== 'undefined' ? programsCount : 0 %>
+                                </h2>
+                            </div>
+                            <div class="bg-success text-white rounded-circle p-4">
+                                <i class="fas fa-dumbbell fa-2x"></i>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- CAMBIAR: Texto del enlace -->
+                        <a href="/admin/programs" class="btn btn-success btn-sm w-100">
+                            <i class="fas fa-eye me-2"></i>Ver Todos los Programas
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Acciones Rápidas -->
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="card shadow-sm border-0">
+                    <div class="card-header bg-primary text-white">
+                        <!-- CAMBIAR: Título de la sección -->
+                        <h5 class="mb-0 fw-bold">
+                            <i class="fas fa-bolt me-2"></i>Acciones Rápidas
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <!-- CAMBIAR: Puedes agregar más acciones rápidas -->
+                            <div class="col-md-6 col-lg-3">
+                                <a href="/admin/posts/new" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-plus me-2"></i>Nuevo Post
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <a href="/admin/programs/new" class="btn btn-outline-success w-100">
+                                    <i class="fas fa-plus me-2"></i>Nuevo Programa
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <a href="/blog" class="btn btn-outline-info w-100" target="_blank">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ver Blog
+                                </a>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <a href="/programs" class="btn btn-outline-warning w-100" target="_blank">
+                                    <i class="fas fa-external-link-alt me-2"></i>Ver Programas
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

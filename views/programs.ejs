@@ -1,0 +1,163 @@
+<!-- ============================================================================
+     VISTA: PROGRAMS / PROGRAMAS - Listado
+     ============================================================================
+     
+     Esta página muestra todos los programas/cursos disponibles.
+     
+     CAMBIAR AQUÍ:
+     - Título principal (línea 22)
+     - Textos de las secciones
+     - Filtros por nivel (si quieres agregar)
+     - Estilos de las tarjetas
+     ============================================================================ -->
+
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<!-- Hero de la página -->
+<section class="py-5 bg-primary text-white" style="margin-top: 76px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <!-- Logo en la página Programas -->
+                <img src="/img/logodemuaythai.jpg" alt="HA MUAY THAI GYM" class="mb-3" style="max-height: 100px; height: auto; width: auto;">
+                
+                <!-- CAMBIAR: Título principal de la página -->
+                <h1 class="display-4 fw-bold mb-4">Nuestros Programas</h1>
+                
+                <!-- CAMBIAR: Subtítulo -->
+                <p class="lead mb-0">
+                    Descubre todos nuestros programas de entrenamiento diseñados para todos los niveles.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Filtros (Opcional) -->
+<% if (typeof currentLevel === 'undefined' || currentLevel === 'all') { %>
+<section class="py-4 bg-light border-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- CAMBIAR: Agrega o quita filtros según tus necesidades -->
+                <div class="d-flex gap-2 justify-content-center flex-wrap">
+                    <a href="/programs" 
+                       class="btn <%= typeof currentLevel === 'undefined' || currentLevel === 'all' ? 'btn-primary' : 'btn-outline-primary' %> btn-sm">
+                        Todos
+                    </a>
+                    <a href="/programs?level=principiante" 
+                       class="btn <%= currentLevel === 'principiante' ? 'btn-primary' : 'btn-outline-primary' %> btn-sm">
+                        Principiante
+                    </a>
+                    <a href="/programs?level=intermedio" 
+                       class="btn <%= currentLevel === 'intermedio' ? 'btn-primary' : 'btn-outline-primary' %> btn-sm">
+                        Intermedio
+                    </a>
+                    <a href="/programs?level=competidor" 
+                       class="btn <%= currentLevel === 'competidor' ? 'btn-primary' : 'btn-outline-primary' %> btn-sm">
+                        Competidor
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<% } %>
+
+<!-- Sección de Programas -->
+<section class="py-5">
+    <div class="container">
+        <!-- CAMBIAR: Mensaje cuando hay filtro activo -->
+        <% if (typeof currentLevel !== 'undefined' && currentLevel !== 'all') { %>
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="alert alert-info">
+                    Mostrando programas de nivel: <strong><%= currentLevel %></strong>
+                    <a href="/programs" class="btn btn-sm btn-outline-primary ms-2">
+                        Ver Todos
+                    </a>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        
+        <div class="row g-4">
+            <% if (typeof programs !== 'undefined' && programs.length > 0) { %>
+                <% programs.forEach(program => { %>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <!-- CAMBIAR: Imagen del programa está en data/programs.json -->
+                            <img src="<%= program.image %>" class="card-img-top" 
+                                 alt="<%= program.name %>" style="height: 250px; object-fit: cover;">
+                            
+                            <!-- Badge de Destacado -->
+                            <% if (program.featured) { %>
+                            <div class="position-absolute top-0 end-0 m-2">
+                                <span class="badge bg-warning text-dark">
+                                    <i class="fas fa-star me-1"></i>Destacado
+                                </span>
+                            </div>
+                            <% } %>
+                            
+                            <div class="card-body d-flex flex-column">
+                                <!-- Badge de Nivel -->
+                                <div class="mb-2">
+                                    <span class="badge bg-primary"><%= program.level %></span>
+                                    <span class="badge bg-secondary"><%= program.duration %></span>
+                                </div>
+                                
+                                <!-- Título -->
+                                <h5 class="card-title fw-bold"><%= program.name %></h5>
+                                
+                                <!-- Descripción -->
+                                <p class="card-text text-muted flex-grow-1">
+                                    <%= program.description %>
+                                </p>
+                                
+                                <!-- Precio y Botón -->
+                                <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
+                                    <span class="fw-bold text-primary fs-5">
+                                        <%= program.price %>
+                                    </span>
+                                    <a href="/programs/<%= program.id %>" class="btn btn-primary">
+                                        Ver Detalles <i class="fas fa-arrow-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="col-12 text-center py-5">
+                    <!-- CAMBIAR: Mensaje cuando no hay programas -->
+                    <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
+                    <h3 class="h4 text-muted mb-2">No hay programas disponibles</h3>
+                    <p class="text-muted">Próximamente agregaremos más programas.</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Call to Action -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <!-- CAMBIAR: Título de CTA -->
+                <h2 class="display-5 fw-bold mb-3">¿No Estás Seguro Por Dónde Empezar?</h2>
+                <!-- CAMBIAR: Descripción del CTA -->
+                <p class="lead text-muted mb-4">
+                    Descubre qué programa es el adecuado para ti según tu nivel de experiencia.
+                </p>
+                <!-- CAMBIAR: Texto del botón -->
+                <a href="/start-here" class="btn btn-primary btn-lg px-5">
+                    Empieza Aquí <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

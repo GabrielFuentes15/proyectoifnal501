@@ -1,0 +1,171 @@
+<!-- ============================================================================
+     VISTA: BLOG DETAIL / DETALLE DE POST
+     ============================================================================
+     
+     Esta página muestra el contenido completo de un post del blog.
+     
+     CAMBIAR AQUÍ:
+     - Estilos de la página
+     - Formato del contenido
+     - Sección de posts relacionados
+     ============================================================================ -->
+
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<!-- Hero de la página -->
+<section class="py-5 bg-primary text-white" style="margin-top: 76px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <!-- Logo en la página de detalle de blog -->
+                <div class="text-center mb-3">
+                    <img src="/img/logodemuaythai.jpg" alt="HA MUAY THAI GYM" style="max-height: 80px; height: auto; width: auto;">
+                </div>
+                
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb text-white-50">
+                        <li class="breadcrumb-item"><a href="/" class="text-white-50 text-decoration-none">Inicio</a></li>
+                        <li class="breadcrumb-item"><a href="/blog" class="text-white-50 text-decoration-none">Blog</a></li>
+                        <li class="breadcrumb-item active text-white" aria-current="page">
+                            <%= typeof post !== 'undefined' ? post.title : 'Post' %>
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Contenido del Post -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <% if (typeof post !== 'undefined') { %>
+                <!-- Contenido Principal -->
+                <div class="col-lg-8 mb-5 mb-lg-0">
+                    <!-- Imagen Principal -->
+                    <!-- CAMBIAR: Imagen del post está en data/posts.json -->
+                    <img src="/<%= post.image %>" alt="<%= post.title %>" 
+                         class="img-fluid rounded shadow-lg mb-4">
+                    
+                    <!-- Meta Información -->
+                    <div class="mb-4">
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="badge bg-primary px-3 py-2">
+                                <i class="fas fa-folder me-1"></i><%= post.category %>
+                            </span>
+                            <% if (typeof post.tags !== 'undefined' && post.tags.length > 0) { %>
+                                <% post.tags.forEach(tag => { %>
+                                    <span class="badge bg-secondary px-3 py-2"><%= tag %></span>
+                                <% }); %>
+                            <% } %>
+                        </div>
+                        
+                        <!-- Fecha -->
+                        <p class="text-muted mb-0">
+                            <i class="far fa-calendar me-2"></i>
+                            Publicado el <%= new Date(post.date).toLocaleDateString('es-ES', { 
+                                year: 'numeric', 
+                                month: 'long', 
+                                day: 'numeric' 
+                            }) %>
+                        </p>
+                    </div>
+                    
+                    <!-- Título -->
+                    <h1 class="display-5 fw-bold mb-4"><%= post.title %></h1>
+                    
+                    <!-- Extracto -->
+                    <p class="lead text-muted mb-4"><%= post.excerpt %></p>
+                    
+                    <!-- Contenido Completo -->
+                    <!-- CAMBIAR: El contenido HTML viene de data/posts.json -->
+                    <div class="post-content mb-5">
+                        <%- post.content %>
+                    </div>
+                    
+                    <!-- Compartir en Redes Sociales (Opcional) -->
+                    <div class="border-top pt-4 mb-5">
+                        <h5 class="fw-bold mb-3">Compartir en:</h5>
+                        <!-- CAMBIAR: URLs de compartir (puedes usar APIs de compartir de cada red social) -->
+                        <div class="d-flex gap-2">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=<%= encodeURIComponent('http://localhost:8080/blog/' + post.id) %>" 
+                               target="_blank" rel="noopener noreferrer" 
+                               class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-facebook-f me-1"></i> Facebook
+                            </a>
+                            <a href="https://twitter.com/intent/tweet?url=<%= encodeURIComponent('http://localhost:8080/blog/' + post.id) %>&text=<%= encodeURIComponent(post.title) %>" 
+                               target="_blank" rel="noopener noreferrer" 
+                               class="btn btn-outline-info btn-sm">
+                                <i class="fab fa-twitter me-1"></i> Twitter
+                            </a>
+                            <a href="https://www.linkedin.com/sharing/share-offsite/?url=<%= encodeURIComponent('http://localhost:8080/blog/' + post.id) %>" 
+                               target="_blank" rel="noopener noreferrer" 
+                               class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-linkedin-in me-1"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Botón Volver -->
+                    <div class="mb-4">
+                        <a href="/blog" class="btn btn-outline-primary w-100">
+                            <i class="fas fa-arrow-left me-2"></i>Volver al Blog
+                        </a>
+                    </div>
+                    
+                    <!-- Posts Relacionados -->
+                    <% if (typeof relatedPosts !== 'undefined' && relatedPosts.length > 0) { %>
+                    <div class="card shadow-sm mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0 fw-bold">
+                                <i class="fas fa-newspaper me-2"></i>Posts Relacionados
+                            </h5>
+                        </div>
+                        <div class="list-group list-group-flush">
+                            <% relatedPosts.forEach(relatedPost => { %>
+                                <a href="/blog/<%= relatedPost.id %>" 
+                                   class="list-group-item list-group-item-action">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="mb-1"><%= relatedPost.title %></h6>
+                                    </div>
+                                    <small class="text-muted">
+                                        <i class="far fa-calendar me-1"></i>
+                                        <%= new Date(relatedPost.date).toLocaleDateString('es-ES') %>
+                                    </small>
+                                </a>
+                            <% }); %>
+                        </div>
+                    </div>
+                    <% } %>
+                    
+                    <!-- CTA Sidebar -->
+                    <div class="card shadow-sm bg-primary text-white">
+                        <div class="card-body text-center">
+                            <h5 class="fw-bold mb-3">¿Listo para Empezar?</h5>
+                            <p class="mb-4">Descubre nuestros programas de entrenamiento diseñados para todos los niveles.</p>
+                            <a href="/programs" class="btn btn-light btn-sm">
+                                Ver Programas <i class="fas fa-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="col-12 text-center py-5">
+                    <h2 class="h3 text-muted mb-3">Post no encontrado</h2>
+                    <p class="text-muted mb-4">El post que buscas no está disponible.</p>
+                    <a href="/blog" class="btn btn-primary">
+                        Volver al Blog <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

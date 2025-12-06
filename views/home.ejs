@@ -1,0 +1,281 @@
+<!-- ============================================================================
+     VISTA: HOME / INICIO
+     ============================================================================
+     
+     Esta página incluye:
+     - Hero principal con título, subtítulo y botones CTA
+     - Sección de programas destacados
+     - Sección de recursos gratuitos (blog)
+     - Sección de testimonios
+     - Sección de suscripción a newsletter
+     
+     CAMBIAR AQUÍ:
+     - Título del hero (línea 22)
+     - Subtítulo del hero (línea 23)
+     - Textos de los botones CTA (líneas 25-26)
+     - Imagen de fondo del hero (línea 18 - en styles.css bajo .hero)
+     - Textos de las secciones
+     - Imágenes de los programas (vienen de data/programs.json)
+     ============================================================================ -->
+
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<!-- Hero Principal -->
+<!-- CAMBIAR: Imagen de fondo del hero está en styles.css bajo .hero-section -->
+<section class="hero-section d-flex align-items-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center text-white">
+                <!-- Logo en el hero -->
+                <img src="/img/logodemuaythai.jpg" alt="HA MUAY THAI GYM" class="mb-4 hero-logo" style="max-height: 120px; height: auto; width: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));">
+                
+                <!-- CAMBIAR: Título principal del hero -->
+                <h1 class="display-3 fw-bold mb-4">
+                    Tu Centro de Entrenamiento de Muay Thai en Línea
+                </h1>
+                
+                <!-- CAMBIAR: Subtítulo del hero -->
+                <p class="lead mb-4">
+                    Aprende técnicas profesionales, mejora tu condición física y alcanza tus objetivos 
+                    con nuestros programas de entrenamiento diseñados por expertos.
+                </p>
+                
+                <!-- CAMBIAR: Textos de los botones CTA -->
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="/start-here" class="btn btn-primary btn-lg px-5">
+                        <i class="fas fa-play-circle me-2"></i>Empieza Aquí
+                    </a>
+                    <a href="/programs" class="btn btn-outline-light btn-lg px-5">
+                        <i class="fas fa-list me-2"></i>Ver Programas
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Programas Destacados -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto text-center">
+                <!-- CAMBIAR: Título de la sección -->
+                <h2 class="display-5 fw-bold mb-3">Programas Destacados</h2>
+                <!-- CAMBIAR: Descripción de la sección -->
+                <p class="lead text-muted">
+                    Descubre nuestros programas de entrenamiento diseñados para todos los niveles, 
+                    desde principiantes hasta competidores profesionales.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <% if (typeof featuredPrograms !== 'undefined' && featuredPrograms.length > 0) { %>
+                <% featuredPrograms.forEach(program => { %>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <!-- CAMBIAR: Imagen del programa está en data/programs.json -->
+                            <img src="<%= program.image %>" class="card-img-top" 
+                                 alt="<%= program.name %>" style="height: 200px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <span class="badge bg-primary mb-2"><%= program.level %></span>
+                                <h5 class="card-title"><%= program.name %></h5>
+                                <p class="card-text text-muted flex-grow-1"><%= program.description %></p>
+                                <div class="d-flex justify-content-between align-items-center mt-auto">
+                                    <span class="fw-bold text-primary"><%= program.price %></span>
+                                    <a href="/programs/<%= program.id %>" class="btn btn-sm btn-outline-primary">
+                                        Ver Detalles
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="col-12 text-center">
+                    <p class="text-muted">No hay programas disponibles en este momento.</p>
+                </div>
+            <% } %>
+        </div>
+        
+        <!-- CAMBIAR: Texto del botón "Ver todos" -->
+        <div class="text-center mt-5">
+            <a href="/programs" class="btn btn-primary btn-lg">
+                Ver Todos los Programas <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Recursos Gratuitos / Blog -->
+<section class="py-5">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto text-center">
+                <!-- CAMBIAR: Título de la sección -->
+                <h2 class="display-5 fw-bold mb-3">Recursos Gratuitos</h2>
+                <!-- CAMBIAR: Descripción de la sección -->
+                <p class="lead text-muted">
+                    Accede a consejos, técnicas y recursos gratuitos en nuestro blog para mejorar tu entrenamiento.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <% if (typeof recentPosts !== 'undefined' && recentPosts.length > 0) { %>
+                <% recentPosts.forEach(post => { %>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <!-- CAMBIAR: Imagen del post está en data/posts.json -->
+                            <img src="<%= post.image %>" class="card-img-top" 
+                                 alt="<%= post.title %>" style="height: 200px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <span class="badge bg-secondary mb-2"><%= post.category %></span>
+                                <h5 class="card-title"><%= post.title %></h5>
+                                <p class="card-text text-muted flex-grow-1"><%= post.excerpt %></p>
+                                <div class="d-flex justify-content-between align-items-center mt-auto">
+                                    <small class="text-muted">
+                                        <i class="far fa-calendar me-1"></i><%= new Date(post.date).toLocaleDateString('es-ES') %>
+                                    </small>
+                                    <a href="/blog/<%= post.id %>" class="btn btn-sm btn-outline-primary">
+                                        Leer Más
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="col-12 text-center">
+                    <p class="text-muted">No hay posts disponibles en este momento.</p>
+                </div>
+            <% } %>
+        </div>
+        
+        <!-- CAMBIAR: Texto del botón "Ver blog" -->
+        <div class="text-center mt-5">
+            <a href="/blog" class="btn btn-outline-primary btn-lg">
+                Ver Todo el Blog <i class="fas fa-arrow-right ms-2"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Testimonios -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto text-center">
+                <!-- CAMBIAR: Título de la sección -->
+                <h2 class="display-5 fw-bold mb-3">Lo Que Dicen Nuestros Estudiantes</h2>
+                <!-- CAMBIAR: Descripción de la sección -->
+                <p class="lead text-muted">
+                    Miles de estudiantes han mejorado su técnica y condición física con nuestros programas.
+                </p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- CAMBIAR: Puedes agregar más testimonios o cargarlos desde un archivo JSON -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <!-- CAMBIAR: Texto del testimonio -->
+                        <p class="card-text">"Excelente programa para principiantes. Las explicaciones son claras y el progreso es notable."</p>
+                        <footer class="blockquote-footer mt-3">
+                            <!-- CAMBIAR: Nombre del estudiante -->
+                            <strong>Carlos M.</strong> <small class="text-muted">- Principiante</small>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <!-- CAMBIAR: Texto del testimonio -->
+                        <p class="card-text">"He mejorado significativamente mi técnica y resistencia. El programa intermedio es perfecto para mí."</p>
+                        <footer class="blockquote-footer mt-3">
+                            <!-- CAMBIAR: Nombre del estudiante -->
+                            <strong>Ana L.</strong> <small class="text-muted">- Intermedio</small>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                        </div>
+                        <!-- CAMBIAR: Texto del testimonio -->
+                        <p class="card-text">"La preparación para competencia es excepcional. Me ayudó a ganar mi primer combate."</p>
+                        <footer class="blockquote-footer mt-3">
+                            <!-- CAMBIAR: Nombre del estudiante -->
+                            <strong>Roberto S.</strong> <small class="text-muted">- Competidor</small>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Suscripción a Newsletter -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <!-- CAMBIAR: Título de la sección -->
+                <h2 class="display-5 fw-bold mb-3">Suscríbete a Nuestro Newsletter</h2>
+                <!-- CAMBIAR: Descripción de la sección -->
+                <p class="lead mb-4">
+                    Recibe tips gratuitos, técnicas exclusivas y actualizaciones sobre nuevos programas.
+                </p>
+                
+                <!-- NOTA: Este formulario no tiene backend funcional, solo es visual -->
+                <!-- CAMBIAR: Si quieres integrar un servicio de newsletter real (Mailchimp, etc.), 
+                     cambia la acción del formulario -->
+                <form class="row g-3 justify-content-center" method="POST" action="/newsletter">
+                    <div class="col-md-8">
+                        <input type="email" class="form-control form-control-lg" 
+                               placeholder="Tu email" name="email" required>
+                    </div>
+                    <div class="col-md-auto">
+                        <button type="submit" class="btn btn-light btn-lg px-5">
+                            Suscribirse
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- CAMBIAR: Texto de privacidad -->
+                <small class="d-block mt-3 opacity-75">
+                    <i class="fas fa-lock me-1"></i>
+                    No compartimos tu información. Cancela tu suscripción en cualquier momento.
+                </small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

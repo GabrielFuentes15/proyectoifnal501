@@ -1,0 +1,167 @@
+<!-- ============================================================================
+     VISTA: BLOG - Listado de Posts
+     ============================================================================
+     
+     Esta página muestra todos los posts del blog con paginación.
+     
+     CAMBIAR AQUÍ:
+     - Título principal (línea 22)
+     - Textos de las secciones
+     - Número de posts por página (en routes/blog.js)
+     - Estilos de las tarjetas
+     ============================================================================ -->
+
+<%- include('partials/header') %>
+<%- include('partials/navbar') %>
+
+<!-- Hero de la página -->
+<section class="py-5 bg-primary text-white" style="margin-top: 76px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <!-- Logo en la página Blog -->
+                <img src="/img/logodemuaythai.jpg" alt="HA MUAY THAI GYM" class="mb-3" style="max-height: 100px; height: auto; width: auto;">
+                
+                <!-- CAMBIAR: Título principal de la página -->
+                <h1 class="display-4 fw-bold mb-4">Blog</h1>
+                
+                <!-- CAMBIAR: Subtítulo -->
+                <p class="lead mb-0">
+                    Tips, técnicas y recursos gratuitos para mejorar tu entrenamiento de Muay Thai.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Posts -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <% if (typeof posts !== 'undefined' && posts.length > 0) { %>
+                <% posts.forEach(post => { %>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm">
+                            <!-- CAMBIAR: Imagen del post está en data/posts.json -->
+                            <img src="<%= post.image %>" class="card-img-top" 
+                                 alt="<%= post.title %>" style="height: 200px; object-fit: cover;">
+                            <div class="card-body d-flex flex-column">
+                                <!-- Badge de Categoría -->
+                                <div class="mb-2">
+                                    <span class="badge bg-primary"><%= post.category %></span>
+                                    <% if (typeof post.tags !== 'undefined' && post.tags.length > 0) { %>
+                                        <% post.tags.slice(0, 2).forEach(tag => { %>
+                                            <span class="badge bg-secondary"><%= tag %></span>
+                                        <% }); %>
+                                    <% } %>
+                                </div>
+                                
+                                <!-- Título -->
+                                <h5 class="card-title fw-bold">
+                                    <a href="/blog/<%= post.id %>" class="text-decoration-none text-dark">
+                                        <%= post.title %>
+                                    </a>
+                                </h5>
+                                
+                                <!-- Extracto -->
+                                <p class="card-text text-muted flex-grow-1">
+                                    <%= post.excerpt %>
+                                </p>
+                                
+                                <!-- Fecha y Botón -->
+                                <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
+                                    <small class="text-muted">
+                                        <i class="far fa-calendar me-1"></i>
+                                        <%= new Date(post.date).toLocaleDateString('es-ES', { 
+                                            year: 'numeric', 
+                                            month: 'long', 
+                                            day: 'numeric' 
+                                        }) %>
+                                    </small>
+                                    <a href="/blog/<%= post.id %>" class="btn btn-sm btn-outline-primary">
+                                        Leer Más <i class="fas fa-arrow-right ms-1"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            <% } else { %>
+                <div class="col-12 text-center py-5">
+                    <!-- CAMBIAR: Mensaje cuando no hay posts -->
+                    <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
+                    <h3 class="h4 text-muted mb-2">No hay posts disponibles</h3>
+                    <p class="text-muted">Próximamente publicaremos más contenido.</p>
+                </div>
+            <% } %>
+        </div>
+        
+        <!-- Paginación -->
+        <% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
+        <nav aria-label="Paginación del blog" class="mt-5">
+            <ul class="pagination justify-content-center">
+                <!-- Botón Anterior -->
+                <% if (typeof hasPrevPage !== 'undefined' && hasPrevPage) { %>
+                <li class="page-item">
+                    <a class="page-link" href="/blog?page=<%= currentPage - 1 %>" aria-label="Anterior">
+                        <span aria-hidden="true">&laquo; Anterior</span>
+                    </a>
+                </li>
+                <% } else { %>
+                <li class="page-item disabled">
+                    <span class="page-link">&laquo; Anterior</span>
+                </li>
+                <% } %>
+                
+                <!-- Números de página -->
+                <% for (let i = 1; i <= totalPages; i++) { %>
+                    <% if (i === currentPage) { %>
+                    <li class="page-item active" aria-current="page">
+                        <span class="page-link"><%= i %></span>
+                    </li>
+                    <% } else { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/blog?page=<%= i %>"><%= i %></a>
+                    </li>
+                    <% } %>
+                <% } %>
+                
+                <!-- Botón Siguiente -->
+                <% if (typeof hasNextPage !== 'undefined' && hasNextPage) { %>
+                <li class="page-item">
+                    <a class="page-link" href="/blog?page=<%= currentPage + 1 %>" aria-label="Siguiente">
+                        <span aria-hidden="true">Siguiente &raquo;</span>
+                    </a>
+                </li>
+                <% } else { %>
+                <li class="page-item disabled">
+                    <span class="page-link">Siguiente &raquo;</span>
+                </li>
+                <% } %>
+            </ul>
+        </nav>
+        <% } %>
+    </div>
+</section>
+
+<!-- Sección de Call to Action -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <!-- CAMBIAR: Título de CTA -->
+                <h2 class="display-5 fw-bold mb-3">¿Quieres Más Contenido?</h2>
+                <!-- CAMBIAR: Descripción del CTA -->
+                <p class="lead text-muted mb-4">
+                    Suscríbete a nuestro newsletter para recibir los últimos tips y técnicas directamente en tu email.
+                </p>
+                <!-- CAMBIAR: Texto del botón -->
+                <a href="/contact" class="btn btn-primary btn-lg px-5">
+                    Suscribirse <i class="fas fa-envelope ms-2"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

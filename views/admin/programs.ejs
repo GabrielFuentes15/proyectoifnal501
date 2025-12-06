@@ -1,0 +1,130 @@
+<!-- ============================================================================
+     VISTA: ADMIN PROGRAMS / LISTADO DE PROGRAMAS PARA ADMINISTRAR
+     ============================================================================
+     
+     Listado de programas con opciones de editar y eliminar.
+     
+     CAMBIAR AQUÍ:
+     - Textos de la página
+     - Acciones disponibles
+     ============================================================================ -->
+
+<%- include('../partials/header') %>
+
+<!-- Navbar Admin -->
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="/admin">
+            <img src="public/img/logodemuaythai.jpg" alt="HA MUAY THAI GYM" class="navbar-logo me-2" height="40">
+            <span class="fw-bold">Panel Administrativo</span>
+        </a>
+        <div class="d-flex gap-3">
+            <a href="/admin" class="btn btn-outline-light btn-sm">
+                <i class="fas fa-arrow-left me-1"></i>Dashboard
+            </a>
+            <a href="/" class="btn btn-outline-light btn-sm" target="_blank">
+                <i class="fas fa-external-link-alt me-1"></i>Ver Sitio
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div style="margin-top: 76px; padding: 2rem 0;">
+    <div class="container">
+        <!-- Título y Botón -->
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h1 class="display-5 fw-bold mb-2">Administrar Programas</h1>
+                <p class="text-muted">Gestiona todos los programas y cursos.</p>
+            </div>
+            <div class="col-md-6 text-md-end">
+                <a href="/admin/programs/new" class="btn btn-success btn-lg">
+                    <i class="fas fa-plus me-2"></i>Nuevo Programa
+                </a>
+            </div>
+        </div>
+        
+        <!-- Mensaje de éxito -->
+        <% if (typeof success !== 'undefined' && success) { %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <% if (success === 'created') { %>
+                Programa creado exitosamente.
+            <% } else if (success === 'updated') { %>
+                Programa actualizado exitosamente.
+            <% } else if (success === 'deleted') { %>
+                Programa eliminado exitosamente.
+            <% } %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+        <% } %>
+        
+        <!-- Tabla de Programas -->
+        <% if (typeof programs !== 'undefined' && programs.length > 0) { %>
+        <div class="card shadow-sm">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Nivel</th>
+                            <th>Duración</th>
+                            <th>Precio</th>
+                            <th>Destacado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% programs.forEach(program => { %>
+                        <tr>
+                            <td><%= program.id %></td>
+                            <td>
+                                <strong><%= program.name %></strong>
+                                <% if (program.description) { %>
+                                <br><small class="text-muted"><%= program.description.substring(0, 50) %>...</small>
+                                <% } %>
+                            </td>
+                            <td><span class="badge bg-primary"><%= program.level %></span></td>
+                            <td><%= program.duration %></td>
+                            <td><span class="fw-bold text-success"><%= program.price %></span></td>
+                            <td>
+                                <% if (program.featured) { %>
+                                    <span class="badge bg-warning text-dark">
+                                        <i class="fas fa-star"></i> Sí
+                                    </span>
+                                <% } else { %>
+                                    <span class="badge bg-secondary">No</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a href="/programs/<%= program.id %>" class="btn btn-outline-info" target="_blank" title="Ver">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="/admin/programs/<%= program.id %>/edit" class="btn btn-outline-success" title="Editar">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <form method="POST" action="/admin/programs/<%= program.id %>/delete" class="d-inline" 
+                                          onsubmit="return confirm('¿Estás seguro de eliminar este programa?');">
+                                        <button type="submit" class="btn btn-outline-danger" title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <% } else { %>
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle me-2"></i>No hay programas disponibles. 
+            <a href="/admin/programs/new" class="alert-link">Crea tu primer programa</a>.
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

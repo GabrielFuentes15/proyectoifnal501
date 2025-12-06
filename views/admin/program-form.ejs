@@ -1,0 +1,168 @@
+<!-- ============================================================================
+     VISTA: ADMIN PROGRAM FORM / FORMULARIO DE CREAR/EDITAR PROGRAMA
+     ============================================================================
+     
+     Formulario para crear o editar un programa.
+     
+     CAMBIAR AQUÍ:
+     - Campos del formulario
+     - Validaciones
+     ============================================================================ -->
+
+<%- include('../partials/header') %>
+
+<!-- Navbar Admin -->
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="/admin">
+            <img src="public/img/logodemuaythai.jpg" alt="HA MUAY THAI GYM" class="navbar-logo me-2" height="40">
+            <span class="fw-bold">Panel Administrativo</span>
+        </a>
+        <div class="d-flex gap-3">
+            <a href="/admin/programs" class="btn btn-outline-light btn-sm">
+                <i class="fas fa-arrow-left me-1"></i>Volver
+            </a>
+            <a href="/" class="btn btn-outline-light btn-sm" target="_blank">
+                <i class="fas fa-external-link-alt me-1"></i>Ver Sitio
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div style="margin-top: 76px; padding: 2rem 0;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <!-- Título -->
+                <h1 class="display-5 fw-bold mb-4">
+                    <%= typeof program !== 'undefined' && program ? 'Editar Programa' : 'Nuevo Programa' %>
+                </h1>
+                
+                <!-- Formulario -->
+                <form method="POST" action="<%= typeof action !== 'undefined' ? action : '/admin/programs' %>" 
+                      class="needs-validation" novalidate>
+                    
+                    <!-- Si es PUT, agregar campo oculto -->
+                    <% if (typeof method !== 'undefined' && method === 'PUT') { %>
+                    <input type="hidden" name="_method" value="PUT">
+                    <% } %>
+                    
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="row g-3">
+                                <!-- Nombre -->
+                                <div class="col-12">
+                                    <label for="name" class="form-label">Nombre del Programa <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="name" name="name" 
+                                           value="<%= typeof program !== 'undefined' && program ? program.name : '' %>" 
+                                           placeholder="Ej: Fundamentos de Muay Thai" required>
+                                    <div class="invalid-feedback">Por favor ingresa un nombre.</div>
+                                </div>
+                                
+                                <!-- Nivel y Duración -->
+                                <div class="col-md-6">
+                                    <label for="level" class="form-label">Nivel <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="level" name="level" required>
+                                        <option value="">Selecciona un nivel</option>
+                                        <option value="Principiante" <%= typeof program !== 'undefined' && program && program.level === 'Principiante' ? 'selected' : '' %>>Principiante</option>
+                                        <option value="Intermedio" <%= typeof program !== 'undefined' && program && program.level === 'Intermedio' ? 'selected' : '' %>>Intermedio</option>
+                                        <option value="Competidor" <%= typeof program !== 'undefined' && program && program.level === 'Competidor' ? 'selected' : '' %>>Competidor</option>
+                                    </select>
+                                    <div class="invalid-feedback">Por favor selecciona un nivel.</div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="duration" class="form-label">Duración <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="duration" name="duration" 
+                                           value="<%= typeof program !== 'undefined' && program ? program.duration : '' %>" 
+                                           placeholder="Ej: 8 semanas" required>
+                                    <div class="invalid-feedback">Por favor ingresa una duración.</div>
+                                </div>
+                                
+                                <!-- Precio -->
+                                <div class="col-12">
+                                    <label for="price" class="form-label">Precio</label>
+                                    <input type="text" class="form-control" id="price" name="price" 
+                                           value="<%= typeof program !== 'undefined' && program ? program.price : 'Gratuito' %>" 
+                                           placeholder="Ej: Gratuito, $49.99/mes, $99.99/mes">
+                                    <small class="form-text text-muted">Deja en blanco o escribe "Gratuito" para programas gratuitos.</small>
+                                </div>
+                                
+                                <!-- Imagen -->
+                                <div class="col-12">
+                                    <label for="image" class="form-label">URL de la Imagen</label>
+                                    <input type="text" class="form-control" id="image" name="image" 
+                                           value="<%= typeof program !== 'undefined' && program ? program.image : '/img/programs/default.jpg' %>" 
+                                           placeholder="/img/programs/programa-1.jpg">
+                                    <small class="form-text text-muted">Ruta de la imagen en public/img/programs/</small>
+                                </div>
+                                
+                                <!-- Descripción Corta -->
+                                <div class="col-12">
+                                    <label for="description" class="form-label">Descripción Corta <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="description" name="description" rows="3" 
+                                              placeholder="Descripción breve que aparece en las tarjetas..." required><%= typeof program !== 'undefined' && program ? program.description : '' %></textarea>
+                                    <div class="invalid-feedback">Por favor ingresa una descripción.</div>
+                                </div>
+                                
+                                <!-- Descripción Completa -->
+                                <div class="col-12">
+                                    <label for="fullDescription" class="form-label">Descripción Completa <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="fullDescription" name="fullDescription" rows="10" 
+                                              placeholder="Descripción completa del programa en HTML..." required><%= typeof program !== 'undefined' && program && program.fullDescription ? program.fullDescription : (typeof program !== 'undefined' && program ? program.description : '') %></textarea>
+                                    <div class="invalid-feedback">Por favor ingresa la descripción completa.</div>
+                                    <small class="form-text text-muted">Puedes usar HTML básico (h2, h3, p, ul, li, etc.)</small>
+                                </div>
+                                
+                                <!-- Destacado -->
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="featured" name="featured" 
+                                               <%= typeof program !== 'undefined' && program && program.featured ? 'checked' : '' %>>
+                                        <label class="form-check-label" for="featured">
+                                            Marcar como programa destacado (aparecerá en la página principal)
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Botones -->
+                                <div class="col-12 mt-4">
+                                    <div class="d-flex gap-2">
+                                        <button type="submit" class="btn btn-success btn-lg px-5">
+                                            <i class="fas fa-save me-2"></i>
+                                            <%= typeof program !== 'undefined' && program ? 'Actualizar Programa' : 'Crear Programa' %>
+                                        </button>
+                                        <a href="/admin/programs" class="btn btn-outline-secondary btn-lg px-5">
+                                            Cancelar
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Validación Bootstrap
+(function() {
+    'use strict';
+    window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    }, false);
+})();
+</script>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "5 Técnicas Básicas de Muay Thai para Principiantes",
+    "date": "2024-01-15",
+    "category": "Técnicas",
+    "tags": ["Principiante", "Técnicas", "Entrenamiento"],
+    "excerpt": "Aprende las 5 técnicas fundamentales que todo principiante debe dominar en Muay Thai.",
+    "content": "<h2>Introducción al Muay Thai</h2><p>El Muay Thai, también conocido como el arte de las ocho extremidades, es un deporte de combate que utiliza puños, codos, rodillas y piernas. Para los principiantes, dominar estas 5 técnicas básicas es fundamental...</p><h3>1. La Guardia</h3><p>La posición de guardia es la base de todo. Mantén las manos arriba, los codos cerca del cuerpo...</p><h3>2. El Jab</h3><p>El golpe más básico y directo. Practica la extensión completa del brazo...</p><h3>3. El Cross</h3><p>Un golpe potente con el puño trasero. Gira las caderas para generar fuerza...</p><h3>4. La Patada Circular</h3><p>La técnica más característica del Muay Thai. Trabaja la rotación completa del cuerpo...</p><h3>5. La Defensa</h3><p>Aprender a bloquear y esquivar es tan importante como atacar. Practica las defensas básicas...</p>",
+    "image": "img/cincotecnicas.png"
+  },
+  {
+    "id": 2,
+    "title": "Cómo Preparar tu Cuerpo para el Entrenamiento de Muay Thai",
+    "date": "2024-01-10",
+    "category": "Entrenamiento",
+    "tags": ["Entrenamiento", "Salud", "Preparación"],
+    "excerpt": "Descubre los mejores ejercicios de calentamiento y estiramiento antes de entrenar Muay Thai.",
+    "content": "<h2>Preparación Física</h2><p>Antes de cada sesión de entrenamiento de Muay Thai, es crucial preparar tu cuerpo correctamente. Un buen calentamiento previene lesiones y mejora tu rendimiento...</p><h3>Calentamiento Dinámico</h3><p>Comienza con movimientos dinámicos que imiten los gestos del Muay Thai. Rotaciones de brazos, patadas suaves...</p><h3>Estiramientos Específicos</h3><p>Enfócate en las áreas más importantes: caderas, isquiotibiales, hombros y cuello...</p><h3>Activación Muscular</h3><p>Realiza ejercicios de activación para despertar los músculos principales que usarás...</p>",
+    "image": "img/prepararelcuerpo.png"
+  },
+  {
+    "id": 3,
+    "title": "Nutrición para Combatientes de Muay Thai",
+    "date": "2024-01-05",
+    "category": "Nutrición",
+    "tags": ["Nutrición", "Salud", "Rendimiento"],
+    "excerpt": "Guía completa sobre qué comer antes, durante y después del entrenamiento para maximizar tu rendimiento.",
+    "content": "<h2>Alimentación Óptima</h2><p>La nutrición es un pilar fundamental en el rendimiento de cualquier deportista. Para los practicantes de Muay Thai, una dieta adecuada puede hacer la diferencia...</p><h3>Antes del Entrenamiento</h3><p>Consume carbohidratos complejos 2-3 horas antes del entrenamiento. Evita comidas pesadas...</p><h3>Durante el Entrenamiento</h3><p>Mantén la hidratación constante. Agua o bebidas isotónicas según la duración...</p><h3>Después del Entrenamiento</h3><p>La ventana de recuperación es crucial. Proteínas y carbohidratos en los primeros 30-60 minutos...</p>",
+    "image": "img/nutriologo.png"
+  },
+  {
+    "id": 4,
+    "title": "Historia y Tradición del Muay Thai",
+    "date": "2023-12-28",
+    "category": "Historia",
+    "tags": ["Historia", "Cultura", "Tradición"],
+    "excerpt": "Conoce los orígenes y la rica tradición cultural que envuelve al Muay Thai tailandés.",
+    "content": "<h2>Orígenes del Muay Thai</h2><p>El Muay Thai tiene sus raíces en la historia de Tailandia, siendo desarrollado como arte marcial de guerra hace cientos de años...</p><h3>El Arte de las Ocho Extremidades</h3><p>Se le conoce así porque utiliza ocho puntos de contacto: puños, codos, rodillas y piernas...</p><h3>Tradiciones y Rituales</h3><p>El Wai Kru Ram Muay es un ritual tradicional que los luchadores realizan antes del combate...</p>",
+    "image": "img/historia.png"
+  }
+]
